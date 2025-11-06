@@ -31,25 +31,31 @@ struct SettingsView: View {
                             .fill(Color.primaryPurpule.opacity(0.2))
                             .frame(width: 130, height: 130)
 
-                            VStack() {
-                                if let image = image {
-                                    Image(uiImage: image)
+                        VStack() {
+                            // Prefer image from the user's imageData if available, otherwise show selected `image` (new), otherwise named image or placeholder
+                            if let data = user.imageData, let uiFromData = UIImage(data: data) {
+                                Image(uiImage: uiFromData)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 130, height: 130)
+                                    .clipShape(Circle())
+                                    .contentShape(Circle())
+                            } else if let image = image {
+                                Image(uiImage: image)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 130, height: 130)
+                                    .clipShape(Circle())
+                                    .contentShape(Circle())
+                            } else {
+                                if let name = user.imageProfil {
+                                    Image(name)
                                         .resizable()
                                         .scaledToFill()
                                         .frame(width: 130, height: 130)
                                         .clipShape(Circle())
                                         .contentShape(Circle())
-                                    
                                 } else {
-                                    if user.imageProfil != nil {
-                                        Image(user.imageProfil!)
-                                            .resizable()
-                                            .scaledToFill()
-                                            .frame(width: 130, height: 130)
-                                            .clipShape(Circle())
-                                            .contentShape(Circle())
-                                    }
-                                        else{
                                     Image(systemName: "plus.rectangle.on.rectangle")
                                         .resizable()
                                         .scaledToFit()
@@ -164,43 +170,47 @@ struct SettingsView: View {
         }
     }
 
-    private func saveAndDismiss() {
-        do {
-
-            try modelContext.save()
-            dismiss()
-        } catch {
-
-            print("Erreur lors de l'enregistrement: \(error)")
-        }
-    }
-
-    private func settingsField(title: String, placeholder: String, text: Binding<String>) -> some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text(title)
-                .font(.subheadline)
-                .foregroundColor(.secondary)
-            ZStack{
-                TextField(placeholder, text: text)
-                    .padding(12)
-                    .background(Color.almostWhite)
-                    .cornerRadius(8)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.gray.opacity(0.3))
-
-                    )
-                HStack(alignment:.center) {
-                    Spacer()
-                    Image(systemName: "rectangle.and.pencil.and.ellipsis").padding(.horizontal,4)
+        private func saveAndDismiss() {
+            do {
+                // if user selected a new image in this session, save its data into the user model
+                if let selected = image {
+                    user.imageData = selected.jpegData(compressionQuality: 0.8)
                 }
-            }
 
+                try modelContext.save()
+                dismiss()
+            } catch {
+
+                print("Erreur lors de l'enregistrement: \(error)")
+            }
+        }
+
+        private func settingsField(title: String, placeholder: String, text: Binding<String>) -> some View {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(title)
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                ZStack{
+                    TextField(placeholder, text: text)
+                        .padding(12)
+                        .background(Color.almostWhite)
+                        .cornerRadius(8)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.gray.opacity(0.3))
+
+                        )
+                    HStack(alignment:.center) {
+                        Spacer()
+                        Image(systemName: "rectangle.and.pencil.and.ellipsis").padding(.horizontal,4)
+                    }
+                }
+
+            }
         }
     }
-}
+
 
 #Preview {
     SettingsView(user: users[0])
 }
-

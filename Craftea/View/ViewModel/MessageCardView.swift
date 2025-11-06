@@ -20,11 +20,25 @@ public struct MessageCardView: View {
 
                 HStack {
                     NavigationLink(destination: UserProfilView(otherUser: otherUser)){
-                        Image(otherUser.imageProfil ?? "placeholder") .resizable() .scaledToFill() .frame(width: 70, height: 70) .clipShape(Circle())
-                            //.shadow(color: .black.opacity(0.25), radius: 5, x: 0, y: 2)
-                            .padding(.leading)
+                        // Prefer local image data if available
+                        if let data = otherUser.imageData, let uiImage = UIImage(data: data) {
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 70, height: 70)
+                                .clipShape(Circle())
+                                .padding(.leading)
+                        } else {
+                            Image(otherUser.imageProfil ?? "placeholder")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 70, height: 70)
+                                .clipShape(Circle())
+                                .padding(.leading)
+                        }
                     }
-                   
+
+                    
 
                     VStack(alignment: .leading, spacing: 6) {
 
@@ -33,19 +47,6 @@ public struct MessageCardView: View {
                                 .mainText(bold: true).foregroundStyle(Color.textPrimary).multilineTextAlignment(.leading)
                             ScoreTag(score: otherUser.score)
 
-//                            HStack(spacing: 3) {
-//                                Image(systemName: "star.fill")
-//                                    .foregroundColor(.yellow)
-//                                Text(String(format: "%.1f", otherUser.score))
-//                                    .font(.subheadline)
-//                                    .foregroundColor(.secondary)
-//                            }
-//                            .padding(.horizontal, 6)
-//                            .padding(.vertical, 3)
-//                            .background(
-//                                RoundedRectangle(cornerRadius: 6)
-//                                    .fill(Color.yellow.opacity(0.15))
-//                            )
                             Spacer()
                         }
 

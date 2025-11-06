@@ -25,8 +25,10 @@ class User: Identifiable {
     var equipment: [Materiel?]
     var recommandations: [Hobby]
     var imageProfil: String?
+    // new: store profile image data selected by the user
+    var imageData: Data? = nil
     
-    init(name: String, surname: String, mail: String, pseudo: String, password: String, location: String? = nil, score: Double = 5, niveau: Double = 0.0, favoriteEquipment: [Materiel] = [], favoriteEquipmentPro : [MaterielPro] = [], favoritesHobby: [Hobby] = [], equipment: [Materiel] = [], recommandations: [Hobby] = [], imageProfil: String? = "user9") {
+    init(name: String, surname: String, mail: String, pseudo: String, password: String, location: String? = nil, score: Double = 5, niveau: Double = 0.0, favoriteEquipment: [Materiel] = [], favoriteEquipmentPro : [MaterielPro] = [], favoritesHobby: [Hobby] = [], equipment: [Materiel] = [], recommandations: [Hobby] = [], imageProfil: String? = "user9", imageData: Data? = nil) {
         self.name = name
         self.surname = surname
         self.mail = mail
@@ -41,6 +43,6 @@ class User: Identifiable {
         self.equipment = equipment
         self.recommandations = recommandations
         self.imageProfil = imageProfil
+        self.imageData = imageData
     }
 }
-

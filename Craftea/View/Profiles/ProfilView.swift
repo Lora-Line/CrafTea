@@ -5,6 +5,7 @@
 //  Created by Hava Bakrieva on 27/10/2025.
 //
 import SwiftUI
+import UIKit
 
 struct ProfilView: View {
 
@@ -27,10 +28,13 @@ struct ProfilView: View {
                     VStack (spacing: 24) {
                         //Profil Image
                         VStack (spacing: 24) {
+                            // Allow tapping the profile to pick a new image
                             ProfileProgressView(
                                 progress: session.currentUser.niveau,
-                                image: Image(session.currentUser.imageProfil ?? "user9")
+                                imageName: session.currentUser.imageProfil,
+                                uiImage: session.currentUser.imageData.flatMap { UIImage(data: $0) }
                             )
+                            
                             HStack(spacing: 16) {
                                 Text("\(session.currentUser.name)").mainTitle().foregroundStyle(Color(.primaryPurpule))
                                 ScoreTag(score: session.currentUser.score)                          }
@@ -99,17 +103,17 @@ struct ProfilView: View {
                 .ignoresSafeArea(edges: .top)
             } //final ZStack
 
-//            .toolbar {
-//                ToolbarItem(placement: .navigationBarTrailing) {
-//                    Button(action: { showSettings = true }) {
-//                        Image(systemName: "gearshape.fill")
-//                            .foregroundColor(Color("primaryPurpule"))
-//                    }
-//                    .accessibilityLabel("Paramètres")
-//                }
-//            }
             .fullScreenCover(isPresented: $showSettings) {
                 SettingsFullScreen(user: session.currentUser)
+            }
+            .sheet(isPresented: $showingImagePicker) {
+                ImagePicker(image: $image, sourceType: .photoLibrary)
+            }
+            .onChange(of: image) { new in
+                if let newImage = new {
+                    // save image data on the current user
+                    session.currentUser.imageData = newImage.jpegData(compressionQuality: 0.8)
+                }
             }
         }.onAppear {
             Task {

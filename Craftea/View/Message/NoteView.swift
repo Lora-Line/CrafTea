@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct NoteView: View {
     var userNote: User
@@ -25,11 +26,26 @@ struct NoteView: View {
             
             VStack(spacing: 20) {
                 HStack(){
-                    Image(userNote.imageProfil ?? "placeholder")
-                        .resizable()
-                        .clipShape(Circle())
-                        .frame(width: 60, height: 60)
-                        .padding(.trailing, 16)
+                    // Avatar: prefer imageData -> named image -> placeholder
+                    if let data = userNote.imageData, let uiImage = UIImage(data: data) {
+                        Image(uiImage: uiImage)
+                            .resizable()
+                            .clipShape(Circle())
+                            .frame(width: 60, height: 60)
+                            .padding(.trailing, 16)
+                    } else if let name = userNote.imageProfil {
+                        Image(name)
+                            .resizable()
+                            .clipShape(Circle())
+                            .frame(width: 60, height: 60)
+                            .padding(.trailing, 16)
+                    } else {
+                        Image("placeholder")
+                            .resizable()
+                            .clipShape(Circle())
+                            .frame(width: 60, height: 60)
+                            .padding(.trailing, 16)
+                    }
                     VStack{
                         HStack{
                             Text(userNote.name).tertiaryTitle()

@@ -24,11 +24,13 @@ struct UserProfilView: View {
                         //Profil Image
                         VStack {
                             ProfileProgressView(
-                                progress: otherUser.niveau,
-                                image: Image(otherUser.imageProfil ?? "placeholder")
+                                progress: otherUser.niveau
+                                ,imageName: otherUser.imageProfil,
+
+                                uiImage: otherUser.imageData.flatMap { UIImage(data: $0) }
                             )
                             HStack{
-                                Text(otherUser.pseudo).mainTitle()
+                                Text(otherUser.pseudo).mainTitle().foregroundStyle(Color(.primaryPurpule))
                                 ScoreTag(score: otherUser.score)
                             }.padding(16)
 

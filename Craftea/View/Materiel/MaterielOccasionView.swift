@@ -83,15 +83,38 @@ struct MaterielOccasionView: View {
 
                             HStack(alignment: .center, spacing: 12) {
                                 NavigationLink(destination: UserProfilView(otherUser: materiel.vendeur)){
-                                    Image(materiel.vendeur.imageProfil ?? "placeholder")
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width: 50, height: 50)
-                                        .clipShape(Circle())
-                                        .overlay(
-                                            Circle()
-                                                .stroke(Color.primaryPurpule.opacity(0.5), lineWidth: 2)
-                                        )
+                                    // Avatar: prefer vendor.imageData -> vendor.imageProfil -> placeholder
+                                    if let data = materiel.vendeur.imageData, let ui = UIImage(data: data) {
+                                        Image(uiImage: ui)
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: 50, height: 50)
+                                            .clipShape(Circle())
+                                            .overlay(
+                                                Circle()
+                                                    .stroke(Color.primaryPurpule.opacity(0.5), lineWidth: 2)
+                                            )
+                                    } else if let name = materiel.vendeur.imageProfil {
+                                        Image(name)
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: 50, height: 50)
+                                            .clipShape(Circle())
+                                            .overlay(
+                                                Circle()
+                                                    .stroke(Color.primaryPurpule.opacity(0.5), lineWidth: 2)
+                                            )
+                                    } else {
+                                        Image("placeholder")
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: 50, height: 50)
+                                            .clipShape(Circle())
+                                            .overlay(
+                                                Circle()
+                                                    .stroke(Color.primaryPurpule.opacity(0.5), lineWidth: 2)
+                                            )
+                                    }
 
                                     VStack(alignment: .leading, spacing: 4) {
                                         Text(materiel.vendeur.pseudo)

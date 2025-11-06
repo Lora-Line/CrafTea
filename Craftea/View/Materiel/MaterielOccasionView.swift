@@ -2,7 +2,7 @@
 //  MaterielOccasionView.swift
 //  Craftea
 //
-//  Created by apprenant75 on 30/10/2025.
+//  Created by Lora-Line on 30/10/2025.
 //
 
 import SwiftUI

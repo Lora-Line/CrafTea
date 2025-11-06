@@ -2,7 +2,7 @@
 //  CrafteaApp.swift
 //  Craftea
 //
-//  Created by Hava Bakrieva on 27/10/2025.
+//  Created by Lora-Line on 27/10/2025.
 //
 
 import SwiftUI

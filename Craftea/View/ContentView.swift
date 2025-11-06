@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  Craftea
 //
-//  Created by Hava Bakrieva on 27/10/2025.
+//  Created by Lora-Line on 27/10/2025.
 //
 
 import SwiftUI
@@ -12,6 +12,7 @@ struct ContentView: View {
     @Environment(Session.self) var sessions
     @Environment(ConversationStore.self) var conversationStore
     var body: some View {
+        
         TabView {
             Tab("Découvrir", systemImage: "sparkles") {
                 DecouvrirView()

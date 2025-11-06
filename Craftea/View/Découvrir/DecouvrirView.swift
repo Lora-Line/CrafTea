@@ -34,6 +34,7 @@ struct DecouvrirView: View {
     
     var body: some View {
         NavigationStack{
+
             ZStack{
                 Color.background.ignoresSafeArea()
                 LinearGradient(gradient:Gradient(colors: [.clear, .primaryPurpule.opacity(0.1)]), startPoint: .topLeading, endPoint: .bottom).ignoresSafeArea()
@@ -68,6 +69,8 @@ struct DecouvrirView: View {
                                 .disableAutocorrection(true)
                                 .foregroundStyle(Color.textPrimary)
                             Button(action: {
+                            }
+
                                 }) {
                                     Image(systemName: "mic.fill")
                                         .foregroundColor(.gray)
@@ -141,7 +144,7 @@ struct DecouvrirView: View {
                             
                             // Loisir Recommandées
                             Text("Loisirs recommandés")
-                                .mainTitle()
+                                .secondaryTitle()
                                 .foregroundStyle(Color.textPrimary)
                                 .padding(.horizontal, 24)
                             
@@ -155,7 +158,7 @@ struct DecouvrirView: View {
                             }
                             // Loisirs Populaires
                             Text("Loisirs populaires")
-                                .mainTitle()
+                                .secondaryTitle()
                                 .foregroundStyle(Color.textPrimary)
                                 .padding(.horizontal, 24)
                             
@@ -170,7 +173,7 @@ struct DecouvrirView: View {
                             }
                             // tout les loisirs
                             Text("Tous les loisirs")
-                                .mainTitle()
+                                .secondaryTitle()
                                 .foregroundStyle(Color.textPrimary)
                                 .padding(.horizontal, 24)
                             VStack(spacing: 12) {

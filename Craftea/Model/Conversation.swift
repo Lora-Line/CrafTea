@@ -2,7 +2,7 @@
 //  Conversation.swift
 //  Craftea
 //
-//  Created by Hava Bakrieva on 03/11/2025.
+//  Created by Lora-Line on 03/11/2025.
 //
 import Foundation
 import Observation

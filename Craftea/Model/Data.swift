@@ -8,7 +8,7 @@
 import Foundation
 
 var users: [User] = [
-    User(name: "Ethan", surname: "Urie", mail: "Ethan25@gmail.com", pseudo: "Ethan", password: "123456",score: 4.9, niveau: 0.90, favoritesHobby: [Hobby(
+    User(name: "Ethan", surname: "Urie", mail: "Ethan25@gmail.com", pseudo: "Ethan", password: "123456",score: 4.9, niveau: 0.50, favoritesHobby: [Hobby(
         name: .Dessin,
         description: "Explorer le trait et les ombres",
         image: "dessin",
@@ -126,7 +126,7 @@ var users: [User] = [
         Technique(name: "Pointillisme", but: "Créer des motifs et dégradés par points.", description: "Charge un outil à embout rond et dépose des points réguliers. Resserre l’espacement pour foncer et espace pour éclaircir.", image: nil)
         ], popular: false
         ),], imageProfil: "user2"),
-    User(name:"Pauline",surname: "Lefèvre",mail: "Pauline@gmail.com",pseudo: "Pauline",password: "123456",location: "Nice", score: 5.5, niveau: 0.65,favoritesHobby: [Hobby(
+    User(name:"Pauline",surname: "Lefèvre",mail: "Pauline@gmail.com",pseudo: "Pauline",password: "123456",location: "Nice", score: 4.7, niveau: 0.65,favoritesHobby: [Hobby(
         name: .PeintureAcrylique,
         description: "Créer des œuvres colorées et texturées",
         image: "acrylique",
@@ -223,7 +223,6 @@ var users: [User] = [
     User(name: "Yanis", surname: "Garcia", mail: "yanis.garcia@gmail.com", pseudo: "YanisG", password: "123456", location: "Toulouse", score: 4.8, niveau: 0.85, favoritesHobby: [], imageProfil: "user17"),
     User(name: "Mila", surname: "Fabre", mail: "mila.fabre@gmail.com", pseudo: "MilaF", password: "123456", location: "Lille", score: 4.3, niveau: 0.95, favoritesHobby: [], imageProfil: "user12"),
     User(name: "Noah", surname: "Chevalier", mail: "noah.chevalier@gmail.com", pseudo: "NoahC", password: "123456", location: "Lyon", score: 4.0, niveau: 0.65, favoritesHobby: [], imageProfil: "user17"),
-    User(name: "Isabelle", surname: "Coquoz", mail: "isa", pseudo: "IsaC", password: "123", location: "Arras", score: 4.9, niveau: 0.35, favoritesHobby: [], imageProfil: "user13"),
 
 ]
 

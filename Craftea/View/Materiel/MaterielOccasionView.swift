@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct MaterielOccasionView: View {
     let materiel: Materiel
@@ -27,27 +28,37 @@ struct MaterielOccasionView: View {
             VStack(spacing: 0) {
                 ScrollView {
                     VStack(spacing: 24) {
-                        AsyncImage(url: URL(string: materiel.image)) { phase in
-                            switch phase {
-                            case .empty:
-                                ProgressView()
-                                    .frame(width: 345,height: 345)
-                                    .frame(maxWidth: .infinity)
-                            case .success(let image):
-                                image
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 345,height: 345)
-                                    .clipShape(RoundedRectangle(cornerRadius: 16))
-                                    .shadow(radius: 4)
-                            case .failure(_):
-                                RoundedRectangle(cornerRadius: 16)
-                                    .fill(Color.almostWhite)
-                                    .frame(height: 300)
-                                    .frame(maxWidth: .infinity)
-                                    .shadow(radius: 2)
-                            @unknown default:
-                                EmptyView()
+                        // If imageData is present, show local image; otherwise fallback to AsyncImage with URL
+                        if let data = materiel.imageData, let uiImage = UIImage(data: data) {
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 345,height: 345)
+                                .clipShape(RoundedRectangle(cornerRadius: 16))
+                                .shadow(radius: 4)
+                        } else {
+                            AsyncImage(url: URL(string: materiel.image)) { phase in
+                                switch phase {
+                                case .empty:
+                                    ProgressView()
+                                        .frame(width: 345,height: 345)
+                                        .frame(maxWidth: .infinity)
+                                case .success(let image):
+                                    image
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 345,height: 345)
+                                        .clipShape(RoundedRectangle(cornerRadius: 16))
+                                        .shadow(radius: 4)
+                                case .failure(_):
+                                    RoundedRectangle(cornerRadius: 16)
+                                        .fill(Color.almostWhite)
+                                        .frame(height: 300)
+                                        .frame(maxWidth: .infinity)
+                                        .shadow(radius: 2)
+                                @unknown default:
+                                    EmptyView()
+                                }
                             }
                         }
 
@@ -105,18 +116,12 @@ struct MaterielOccasionView: View {
                                 ){
                                     Text("Contacter")
                                         .buttonLabel()
-                                        .foregroundColor(.white)
+                                        .foregroundColor(.almostWhite)
                                         .padding(.horizontal, 18)
                                         .padding(.vertical, 10)
-                                        .background(
-                                            ZStack {
-                                                RoundedRectangle(cornerRadius: 10)
-                                                    .fill(.ultraThinMaterial)
-                                                    .fill(Color.primaryPurpule.opacity(0.6))
-                                                    .stroke(Color.white.opacity(0.25), lineWidth: 0.5)
-                                            }
-                                        )
-                                        
+
+                                        .glassEffect(.regular.tint(.primaryPurpule))
+
                                 }
 
                         }
@@ -181,4 +186,3 @@ struct MaterielOccasionView: View {
         .environment(Session(currentUser: users[0]))
         .environment(ConversationStore())
 }
-

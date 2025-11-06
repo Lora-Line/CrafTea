@@ -26,13 +26,13 @@ struct ProfilView: View {
                 ScrollView(showsIndicators: false) {
                     VStack (spacing: 24) {
                         //Profil Image
-                        VStack (spacing: 8) {
+                        VStack (spacing: 24) {
                             ProfileProgressView(
-                                progress: session.currentUser.niveau, // 75% rempli
-                                image: Image(session.currentUser.imageProfil ?? "placeholder")
+                                progress: session.currentUser.niveau,
+                                image: Image(session.currentUser.imageProfil ?? "user9")
                             )
-                            HStack(spacing: 8) {
-                                Text("\(session.currentUser.name)").mainTitle()
+                            HStack(spacing: 16) {
+                                Text("\(session.currentUser.name)").mainTitle().foregroundStyle(Color(.primaryPurpule))
                                 ScoreTag(score: session.currentUser.score)                          }
 
                         }.padding(.top, 50)
@@ -60,9 +60,9 @@ struct ProfilView: View {
                                     HStack (spacing: 16) {
                                         ForEach(session.currentUser.favoriteEquipment) { materiel in
                                             MaterielCard(materiel: materiel)
-                                            ForEach(session.currentUser.favoriteEquipmentPro) { materiel in
-                                                MaterielCardPro(materiel: materiel)
-                                            }
+                                        }
+                                        ForEach(session.currentUser.favoriteEquipmentPro) { materiel in
+                                            MaterielCardPro(materiel: materiel)
                                         }
                                     }
                                     .padding(.horizontal, 24)
@@ -75,7 +75,7 @@ struct ProfilView: View {
 
                     // Section Articles de troc
                     VStack(alignment: .leading) {
-                        Text("Mes Articles de Troc").mainTitle()
+                        Text("Mes Articles").mainTitle()
                             .padding(.horizontal, 24)
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
@@ -110,6 +110,10 @@ struct ProfilView: View {
 //            }
             .fullScreenCover(isPresented: $showSettings) {
                 SettingsFullScreen(user: session.currentUser)
+            }
+        }.onAppear {
+            Task {
+                await viewModel.loadDetailImages()
             }
         }
     }

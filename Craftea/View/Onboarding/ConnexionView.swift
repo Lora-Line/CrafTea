@@ -33,11 +33,12 @@ struct ConnexionView: View {
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 100, height: 100)
                             .clipShape(Circle())
+                            .padding(.top, 32)
 
-                        Text("C'est cool de te revoir !")
-                            .font(.custom("Manrope-ExtraBold", size: 36))
+                        Text("C'est cool\n de te revoir !")
+                            .mainTitle()
                             .multilineTextAlignment(.center)
-                            .padding(.bottom, 20)
+                            .padding(.vertical, 20)
                     }
                     // Champs de connexion
                     VStack(alignment: .leading) {
@@ -118,12 +119,11 @@ struct ConnexionView: View {
                                         .font(.custom("Manrope-Bold", size: 20))
                                         .foregroundColor(.almostWhite)
                                     Image(systemName: "arrow.up.right")
-                                        .foregroundColor(.white).bold()
+                                        .foregroundColor(.almostWhite).bold()
                                 }
                                 .padding()
                                 .frame(width: 220, height: 50)
-                                .background(Color("primaryPurpule"))
-                                .cornerRadius(10)
+                                .glassEffect(.regular.tint(.primaryPurpule), in: RoundedRectangle(cornerRadius: 10))
                             }
                             .alert("Identifiants incorrects", isPresented: $showAlert) {
                                 Button("OK", role: .cancel) {}

@@ -31,7 +31,7 @@ struct LoadingHobbiesView: View {
 
                 VStack(spacing: 40) {
                     // Message d’attente
-                    Text("Merci pour tes réponses ! Nous te préparons des loisirs adaptés !")
+                    Text("Merci pour tes réponses !\n Nous te préparons des loisirs adaptés !")
                         .font(.custom("Manrope-Bold", size: 20))
                         .multilineTextAlignment(.center)
                         .padding(.horizontal)

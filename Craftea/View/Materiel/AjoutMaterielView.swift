@@ -164,6 +164,8 @@ struct AjoutMaterielView: View {
                         // Create new Materiel. For image we set an empty string so loadCoverImages can fetch a picture.
                         let newMateriel = Materiel(nom: titreAnnonce,
                                                    image: "",
+                                                   // pass image data from picker if available
+                                                   imageData: image?.jpegData(compressionQuality: 0.8),
                                                    description: descriptionAnnonce,
                                                    vendeur: session.currentUser,
                                                    typeMateriel: category)

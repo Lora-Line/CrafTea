@@ -50,7 +50,7 @@ public struct MessageDetailView: View {
                                     } else {
                                         Text(message.content)
                                             .padding(10)
-                                            .background(Color.secondaryOrange.opacity(0.1))
+                                            .background(Color.gray.opacity(0.08))
                                             .cornerRadius(10)
                                         Spacer()
                                     }
@@ -63,15 +63,17 @@ public struct MessageDetailView: View {
 
                     VStack {
                         if isReserved && !hasConfirmed {
-                               ButtonComponent(
-                                   text: "Confirmer la réception",
-                                   style: .outlined,
-                                   size: .large
-                               ) {
-                                   withAnimation {
-                                       hasConfirmed = true
-                                   }
-                               }
+                            Button {
+                                withAnimation {
+                                    hasConfirmed = true
+                                }
+                            } label: {
+                                Text("Confirmer la réception")
+                                    .mainText()
+                                    .foregroundStyle(.primaryPurpule)
+                                    .frame(maxWidth: .infinity, minHeight: 40)
+                                    .glassEffect(.clear, in: RoundedRectangle(cornerRadius: 10))
+                            }
 
                            } else if isReserved && hasConfirmed {
                                VStack(spacing: 16) {
@@ -81,23 +83,22 @@ public struct MessageDetailView: View {
                                        .multilineTextAlignment(.center)
                                        .padding(.bottom, 8)
 
-                                   HStack(spacing: 16) {
+                                   VStack(spacing: 8) {
                                        NavigationLink(destination: NoteView(userNote:otherUser, materiel: materiel)) {
-                                           ButtonComponent(
-                                               text: "Évaluer",
-                                               style: .filled,
-                                               size: .small,
-                                               useButton: false
-                                           )
+                                           Text("Evaluer \(otherUser.pseudo)")
+                                               .mainText()
+                                               .foregroundStyle(.almostWhite)
+                                               .frame(maxWidth: .infinity, minHeight: 40)
+                                               .glassEffect(.regular.tint(.primaryPurpule), in: RoundedRectangle(cornerRadius: 10))
+
                                        }
 
                                        NavigationLink(destination: AjoutMaterielView()) {
-                                           ButtonComponent(
-                                               text: "Publier un nouvel article",
-                                               style: .outlined,
-                                               size: .small,
-                                               useButton: false
-                                           )
+                                           Text("Publier un nouvel article")
+                                               .mainText()
+                                               .foregroundStyle(.primaryPurpule)
+                                               .frame(maxWidth: .infinity, minHeight: 40)
+                                               .glassEffect(.clear, in: RoundedRectangle(cornerRadius: 10))
                                        }
                                    }
                                }
@@ -126,6 +127,7 @@ public struct MessageDetailView: View {
                             .lineLimit(...3)
                             .padding()
                             .background(Color.almostWhite)
+                            .cornerRadius(16)
 
                         HStack {
                             Button(action: {

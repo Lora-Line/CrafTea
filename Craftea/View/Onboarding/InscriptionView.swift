@@ -44,23 +44,25 @@ struct InscriptionView: View {
 
                         Image("CrafteaLogo")
                             .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 100, height: 100)
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 80)
                             .clipShape(Circle())
-                        
+                            .padding(.bottom, 16)
+
                         Text("Bienvenue !")
-                            .font(.custom("Manrope-Bold", size: 36))
-                            .fontWeight(.bold)
+                            .mainTitle()
+
                     }
                     
 
                     VStack(alignment: .leading, spacing: 8) {
+
                         VStack(alignment: .leading, spacing: 4) {
-                            // Nom
-                            Text("Nom")
+                            // Prénom
+                            Text("Prénom")
                                 .font(.subheadline)
                                 .foregroundColor(.secondary)
-                            TextField("Nom", text: $name)
+                            TextField("Prénom", text: $nom)
                                 .padding(12)
                                 .background(Color.almostWhite)
                                 .cornerRadius(8)
@@ -70,11 +72,11 @@ struct InscriptionView: View {
                                 )
                         }
                         VStack(alignment: .leading, spacing: 4) {
-                            // Prénom
-                            Text("Prénom")
+                            // Nom
+                            Text("Nom")
                                 .font(.subheadline)
                                 .foregroundColor(.secondary)
-                            TextField("Prénom", text: $nom)
+                            TextField("Nom", text: $name)
                                 .padding(12)
                                 .background(Color.almostWhite)
                                 .cornerRadius(8)
@@ -148,12 +150,12 @@ struct InscriptionView: View {
                             }
                         }
 
-                        if !isPasswordValid() && !password.isEmpty {
-                            Text("⚠️ Le mot de passe doit contenir entre 6 et 15 caractères.")
-                                .font(.system(size: 14, weight: .medium))
-                                .foregroundColor(.red)
-                                .padding(.horizontal, 4)
-                        }
+//                        if !isPasswordValid() && !password.isEmpty {
+//                            Text("⚠️ Le mot de passe doit contenir entre 6 et 15 caractères.")
+//                                .font(.system(size: 14, weight: .medium))
+//                                .foregroundColor(.red)
+//                                .padding(.horizontal, 4)
+//                        }
 
                         VStack(alignment: .leading, spacing: 4) {
                             // Confirmation du mot de passe
@@ -191,12 +193,12 @@ struct InscriptionView: View {
                             }
                         }
 
-                        if !isPassword2Valid() && !password2.isEmpty {
-                            Text("⚠️ Le mot de passe doit contenir entre 6 et 15 caractères.")
-                                .font(.system(size: 14, weight: .medium))
-                                .foregroundColor(.red)
-                                .padding(.horizontal, 4)
-                        }
+//                        if !isPassword2Valid() && !password2.isEmpty {
+//                            Text("⚠️ Le mot de passe doit contenir entre 6 et 15 caractères.")
+//                                .font(.system(size: 14, weight: .medium))
+//                                .foregroundColor(.red)
+//                                .padding(.horizontal, 4)
+//                        }
 
                         //Accepte
                         
@@ -244,8 +246,7 @@ struct InscriptionView: View {
                         }
                         .foregroundColor(.almostWhite)
                         .frame(maxWidth: .infinity, maxHeight: 50)
-                        .background(Color("primaryPurpule"))
-                        .cornerRadius(10)
+                        .glassEffect(.regular.tint(.primaryPurpule), in: RoundedRectangle(cornerRadius: 10))
                     }
 
                     // Navigation automatique après clic

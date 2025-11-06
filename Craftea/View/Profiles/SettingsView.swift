@@ -39,6 +39,7 @@ struct SettingsView: View {
                                         .frame(width: 130, height: 130)
                                         .clipShape(Circle())
                                         .contentShape(Circle())
+                                    
                                 } else {
                                     if user.imageProfil != nil {
                                         Image(user.imageProfil!)

@@ -21,20 +21,19 @@ struct MessageDonCardView: View {
                     switch phase {
                     case .empty:
                         ProgressView()
-                            .frame(width: 70, height: 70)
+                            .frame(width: 80, height: 80)
                             .padding(.leading)
                     case .success(let image):
                         image
                             .resizable()
                             .scaledToFill()
-                            .frame(width: 70, height: 70)
+                            .frame(width: 80, height: 80)
                             .clipShape(RoundedRectangle(cornerRadius: 8))
                             .overlay(
                                 RoundedRectangle(cornerRadius: 8)
                                     .stroke(Color.gray, lineWidth: 1)
                             )
-                            //.shadow(color: .black.opacity(0.25), radius: 5, x: 0, y: 2)
-                            .padding(.leading)
+                            .padding(.leading,8)
                     case .failure(_):
                         Image("placeholder")
                             .resizable()
@@ -71,16 +70,20 @@ struct MessageDonCardView: View {
                         
                     }
                 }.padding(8)
-                ButtonComponent(
-                            text: isReserved ? "Réservé" : "Réserver",
-                            style: isReserved ? .filled : .outlined,
-                            size: .small,
-                        ) {
-                            withAnimation(.easeInOut(duration: 0.2)) {
-                                isReserved.toggle()
-                            }
-                        }
-                        .padding()
+                Button {
+                    withAnimation(.easeInOut(duration: 0.2)) {
+                        isReserved.toggle()
+                    }
+                } label: {
+                    Text(isReserved ? "Réservé" : "Réserver")
+                        .mainText()
+                        .foregroundStyle(isReserved ? .primaryPurpule : .almostWhite)
+                        .frame(maxWidth: .infinity, minHeight: 40)
+                        .glassEffect(isReserved ? .clear: .clear.tint(.primaryPurpule), in: RoundedRectangle(cornerRadius: 10))
+                }
+
+
+                .padding(.horizontal, 8)
             }.padding(7)
                 .frame(width: 380)
             

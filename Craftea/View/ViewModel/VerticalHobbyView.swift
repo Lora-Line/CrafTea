@@ -13,7 +13,7 @@ struct VerticalHobbyView: View {
     
     var body: some View {
         NavigationLink(destination:LoisirDetailView(hobby: hobby)){
-            ZStack{
+            ZStack(alignment: .top){
                 Color.almostWhite
                 VStack(alignment:.leading){
                     
@@ -74,6 +74,7 @@ struct VerticalHobbyView: View {
                         
                         Text(hobby.description)
                             .secondaryText().foregroundColor(.textSecondary).multilineTextAlignment(.leading)
+                                .lineLimit(2)
                     }
                 }.padding(8)
                 
@@ -89,3 +90,4 @@ struct VerticalHobbyView: View {
     let viewModel = HobbyViewModel()
     VerticalHobbyView(hobby: viewModel.hobbies[0])
 }
+

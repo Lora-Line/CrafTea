@@ -198,18 +198,26 @@ struct MaterielView: View {
 
                     SegmentedToggle(selection: $condition, options: ["Occasion", "Neuf"])
 
-                    ScrollView {
+                    ScrollView(showsIndicators: false) {
                         LazyVGrid(columns: columns, spacing: 16) {
                             if condition == "Occasion" {
                                 ForEach(filteredMateriels) { materiel in
                                     NavigationLink(destination: MaterielOccasionView(materiel: materiel)) {
                                         VStack(alignment: .leading) {
                                             ZStack(alignment: .topTrailing) {
-                                                KFImage(URL(string: materiel.image))
-                                                    .resizable()
-                                                    .scaledToFill()
-                                                    .frame(width: 148.5, height: 139)
-                                                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                                                if let data = materiel.imageData, let uiImage = UIImage(data: data) {
+                                                    Image(uiImage: uiImage)
+                                                        .resizable()
+                                                        .scaledToFill()
+                                                        .frame(width: 148.5, height: 139)
+                                                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                                                } else {
+                                                    KFImage(URL(string: materiel.image))
+                                                        .resizable()
+                                                        .scaledToFill()
+                                                        .frame(width: 148.5, height: 139)
+                                                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                                                }
 
                                                 Text(materiel.typeMateriel.rawValue)
                                                     .font(.caption)

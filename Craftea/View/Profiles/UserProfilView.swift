@@ -23,15 +23,14 @@ struct UserProfilView: View {
                     VStack (spacing: 24) {
                         //Profil Image
                         VStack {
-                            Spacer(minLength: 10)
                             ProfileProgressView(
-                                progress: otherUser.niveau, // 75% rempli
+                                progress: otherUser.niveau,
                                 image: Image(otherUser.imageProfil ?? "placeholder")
                             )
                             HStack{
                                 Text(otherUser.pseudo).mainTitle()
                                 ScoreTag(score: otherUser.score)
-                            }
+                            }.padding(16)
 
                         }
                         //Section Ses Loisirs
@@ -48,7 +47,7 @@ struct UserProfilView: View {
                         }
                         //Section Article de Troc
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("Ses Articles de Troc").mainTitle().padding(.horizontal, 24)
+                            Text("Ses Articles").mainTitle().padding(.horizontal, 24)
                             //.padding(15)
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack (spacing: 16) {

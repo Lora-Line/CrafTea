@@ -87,13 +87,6 @@ struct LoisirDetailView: View {
                                 ForEach(hobby.equipementNeeded, id: \.id) { item in
                                     NavigationLink(destination: MaterielView(searchTextfromDetailView: item.name)){
                                         HStack(alignment: .top) {
-//                                            KFImage(URL(string: item.image))
-//                                                //.placeholder: { ProgressView() }
-//                                                .resizable()
-//                                                .scaledToFill()
-//                                                .frame(width: 60, height: 60)
-//                                                .clipShape(RoundedRectangle(cornerRadius: 8))
-
 
                                             AsyncImage(url: URL(string: item.image)) { image in
                                                 image
@@ -113,7 +106,7 @@ struct LoisirDetailView: View {
                                                 
                                                 
                                                 Text(item.description)
-                                                    .secondaryText().foregroundColor(.textSecondary)
+                                                    .secondaryText().foregroundColor(.textSecondary).multilineTextAlignment(.leading)
                                                 
                                             }
                                             Spacer()

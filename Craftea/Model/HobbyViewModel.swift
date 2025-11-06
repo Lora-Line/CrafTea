@@ -51,7 +51,7 @@ class HobbyViewModel {
              BaseEquipment(name: "Toile", description: "Toile montée ou panneau entoilé", image: "https://media.istockphoto.com/id/942992430/photo/empty-canvas-on-easel.jpg?s=612x612&w=0&k=20&c=DEjNV_QH42Fa7zvdYLDtMpNzpFx61cHofrdVtyiyX1w="),
              BaseEquipment(name: "Palette", description: "Pour mélanger les couleurs", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsQFveoasupOhaohg0yipt4YMkPDnH2wMWuQ&s"),
              BaseEquipment(name: "Peinture acrylique", description: "Jeu de couleurs primaires et secondaires", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA3Il-pywHWe6lyU7dp8xbsSbkxws-UqtfYg&s"),
-             BaseEquipment(name: "Eau et chiffon", description: "Nettoyage des pinceaux et corrections", image: ""),
+             BaseEquipment(name: "Eau et chiffon", description: "Nettoyage des pinceaux et corrections", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpodN089HLg1lgkKlKdr9q4_hZtvA57hbCEA&s"),
              BaseEquipment(name: "Couteau à peindre", description: "Pour textures et mélanges", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDa5-FI3II-qLRFW2ZkGk_cco_jet8bpEJWg&s")
              ],
              technicalBasis: [

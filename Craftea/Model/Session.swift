@@ -27,7 +27,7 @@ final class Session {
         "Chaque création commence par un essai.",
         "Fais de ta curiosité une création."
     ]
-    init(currentUser: User, welcome: String = "") {
+    init(currentUser: User, welcome: String = "Sois créatif aujourd'hui !") {
         self.currentUser = currentUser
         self.welcome = welcome
     }

@@ -15,39 +15,42 @@ struct ProfileProgressView: View {
         ZStack {
             // Cercle de fond
             Circle()
-                .stroke(lineWidth: 10)
+                .stroke(lineWidth: 16)
                 .opacity(0.2)
-                .foregroundColor(Color.gray)
-            
+                .foregroundColor(Color.almostWhite)
+
             // Cercle de progression
             Circle()
                 .trim(from: 0.0, to: progress)
                 .stroke(
                     AngularGradient(
-                        gradient: Gradient(colors: [Color("primaryPurpule"), Color.blue.opacity(0.8)]),
+                        gradient: Gradient(colors: [.primaryPurpule, Color.blue.opacity(0.8)]),
                         center: .center
+
                     ),
-                    style: StrokeStyle(lineWidth: 10, lineCap: .round)
+                    style: StrokeStyle(lineWidth: 16, lineCap: .round)
                 )
-                .rotationEffect(.degrees(-90))
+                .rotationEffect(Angle(degrees:-90))
+                .scaleEffect(x: -1, y: 1, anchor: .center)
                 .animation(.easeOut(duration: 1.0), value: progress)
             
             // Image de profil
             image
                 .resizable()
                 .scaledToFill()
-                .frame(width: 120, height: 120)
+                .frame(width: 144, height: 144)
                 .clipShape(Circle())
                 .overlay(Circle().stroke(Color.white, lineWidth: 3))
         }
-        .frame(width: 150, height: 150)
+        .frame(width: 160, height: 160)
     }
 }
 
 #Preview (traits: .sizeThatFitsLayout){
     ProfileProgressView(
-        progress: 0.75, // 75% rempli
+        progress: 0.55,
         image: Image("user1")
     )
         .padding()
 }
+

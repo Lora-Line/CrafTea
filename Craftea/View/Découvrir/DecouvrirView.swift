@@ -52,7 +52,7 @@ struct DecouvrirView: View {
                                 Text(session.welcome)
                                     .tertiaryTitle()
                                     .foregroundStyle(Color.textSecondary)
-                            }
+                            }.padding(.top, 16)
                             Spacer()
                         }.padding(.horizontal, 24)
                     }
@@ -68,10 +68,8 @@ struct DecouvrirView: View {
                                 .textInputAutocapitalization(.never)
                                 .disableAutocorrection(true)
                                 .foregroundStyle(Color.textPrimary)
-                            Button(action: {
-                            }
-
-                                }) {
+                            Button(action: {}
+                                ) {
                                     Image(systemName: "mic.fill")
                                         .foregroundColor(.gray)
                                         .padding(6)

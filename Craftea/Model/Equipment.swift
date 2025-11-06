@@ -18,6 +18,7 @@ struct Materiel: Identifiable {
     let id = UUID()
     let nom: String
     var image: String
+    var imageData: Data? = nil
     let description: String
     let vendeur: User
     let typeMateriel: EquipmentCategory
@@ -31,4 +32,3 @@ struct MaterielPro: Identifiable {
     let vendeur: String
     let prix: String
 }
-

@@ -117,7 +117,7 @@ struct MaterielNeufView: View {
                             session.currentUser.favoriteEquipmentPro.removeAll(where: { $0.id == materiel.id })
                         } else {
                             session.currentUser.favoriteEquipmentPro.append(materiel)
-                            session.currentUser.niveau += 5
+                            session.currentUser.niveau += 0.05
                         }
                     }) {
                         Label("Favorite", systemImage: session.currentUser.favoriteEquipmentPro.contains(where: { $0.id == materiel.id }) ? "heart.fill" : "heart")

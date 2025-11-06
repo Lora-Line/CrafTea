@@ -7,20 +7,30 @@
 
 import SwiftUI
 import Kingfisher
+import UIKit
 
 struct MaterielCard: View {
     var materiel : Materiel
-    
+
     var body: some View {
         NavigationStack {
                 NavigationLink(destination: MaterielOccasionView(materiel: materiel)) {
                     VStack(alignment: .leading) {
                         ZStack(alignment: .topTrailing) {
-                            KFImage(URL(string: materiel.image))
-                                                        .resizable()
-                                                            .scaledToFill()
-                                                            .frame(width: 148.5, height: 139)
-                                                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                            // prefer local imageData if available
+                            if let data = materiel.imageData, let uiImage = UIImage(data: data) {
+                                Image(uiImage: uiImage)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 148.5, height: 139)
+                                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                            } else {
+                                KFImage(URL(string: materiel.image))
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 148.5, height: 139)
+                                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                            }
                             Text(materiel.typeMateriel.rawValue)
                                 .font(.caption)
                                 .fontWeight(.semibold)
@@ -31,14 +41,14 @@ struct MaterielCard: View {
                                              in: RoundedRectangle(cornerRadius: 8))
                                 .offset(x: -4, y: 4)
                         }
-                        
+
                         VStack(alignment: .leading, spacing: 2) {
                             Text(materiel.nom)
                                 .tertiaryTitle()
                                 .foregroundColor(.textPrimary)
                                 .lineLimit(1)
                                 .padding(.horizontal, 8)
-                            
+
                             Text(materiel.description)
                                 .secondaryText()
                                 .foregroundColor(.textSecondary)

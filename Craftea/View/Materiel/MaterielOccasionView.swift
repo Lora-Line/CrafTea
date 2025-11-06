@@ -143,7 +143,7 @@ struct MaterielOccasionView: View {
                                         .padding(.horizontal, 18)
                                         .padding(.vertical, 10)
 
-                                        .glassEffect(.regular.tint(.primaryPurpule))
+                                        .glassEffect(.clear.tint(.primaryPurpule))
 
                                 }
 

@@ -36,7 +36,7 @@ struct ProfilView: View {
                             )
                             
                             HStack(spacing: 16) {
-                                Text("\(session.currentUser.name)").mainTitle().foregroundStyle(Color(.primaryPurpule))
+                                Text("\(session.currentUser.pseudo)").mainTitle().foregroundStyle(Color(.primaryPurpule))
                                 ScoreTag(score: session.currentUser.score)                          }
 
                         }.padding(.top, 50)

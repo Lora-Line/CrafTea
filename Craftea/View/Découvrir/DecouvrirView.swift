@@ -10,7 +10,7 @@ import SwiftUI
 struct DecouvrirView: View {
     @Environment(Session.self) private var session
     @Environment(HobbyViewModel.self) var viewModel
-
+    @SceneStorage("selectedTab") var selectedTab = 0
     @State var searchText: String = ""
     @State private var hasScrolled: Bool = false
     @State private var isExpanded: Bool = true
@@ -43,7 +43,7 @@ struct DecouvrirView: View {
                     //Le message en haut
                     //disparait quand on scroll
                     if !hasScrolled {
-                        
+
                         HStack(){
                             VStack(alignment: .leading, spacing: 4) {
                                 Text("Bonjour \(session.currentUser.name) !")
@@ -59,29 +59,29 @@ struct DecouvrirView: View {
                     
                     
                     // Barre de recherche, .searchable fonctionne pas avec le texte et la barre de filtres
-                    GlassEffectContainer() {
-                        HStack(spacing: 8) {
-                            Image(systemName: "magnifyingglass")
-                                .font(.system(size: 16, weight: .regular))
-                                .foregroundStyle(Color.textSecondary)
-                            TextField("Rechercher un loisir", text: $searchText)
-                                .textInputAutocapitalization(.never)
-                                .disableAutocorrection(true)
-                                .foregroundStyle(Color.textPrimary)
-                            Button(action: {}
-                                ) {
-                                    Image(systemName: "mic.fill")
-                                        .foregroundColor(.gray)
-                                        .padding(6)
-                                        .background(Color.white.opacity(0.8))
-                                        .clipShape(Circle())
-                                }
-                        }
-                        .padding(.vertical, 10)
-                        .padding(.horizontal, 12)
-                    }.glassEffect()
-                        .padding(.top, hasScrolled ? 20 : 0)
-                        .padding(.horizontal)
+//                    GlassEffectContainer() {
+//                        HStack(spacing: 8) {
+//                            Image(systemName: "magnifyingglass")
+//                                .font(.system(size: 16, weight: .regular))
+//                                .foregroundStyle(Color.textSecondary)
+//                            TextField("Rechercher un loisir", text: $searchText)
+//                                .textInputAutocapitalization(.never)
+//                                .disableAutocorrection(true)
+//                                .foregroundStyle(Color.textPrimary)
+//                            Button(action: {}
+//                                ) {
+//                                    Image(systemName: "mic.fill")
+//                                        .foregroundColor(.gray)
+//                                        .padding(6)
+//                                        .background(Color.white.opacity(0.8))
+//                                        .clipShape(Circle())
+//                                }
+//                        }
+//                        .padding(.vertical, 10)
+//                        .padding(.horizontal, 12)
+//                    }.glassEffect()
+//                        .padding(.top, hasScrolled ? 20 : 0)
+//                        .padding(.horizontal)
                     
                     //Barre de filtre
                     GlassEffectContainer(spacing: 12.0) {
@@ -192,6 +192,8 @@ struct DecouvrirView: View {
             }
             .scrollIndicators(.hidden)
             .tint(Color.primaryPurpule)
+            .navigationBarTitleDisplayMode(.inline)
+            .isSearchable(selectedTab: selectedTab, searchText: $searchText)
         }
     }
 }
@@ -200,6 +202,4 @@ struct DecouvrirView: View {
     DecouvrirView()
         .environment(Session(currentUser: users[0]))
         .environment(HobbyViewModel())
-        //.environment(welcomeSentence())
 }
-

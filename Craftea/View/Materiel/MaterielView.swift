@@ -8,6 +8,7 @@ import SwiftUI
 import Kingfisher
 
 struct MaterielView: View {
+    @SceneStorage("selectedTab") var selectedTab = 1
     @State private var searchText = ""
     var searchTextfromDetailView: String = ""
     @State private var condition: String = "Occasion"
@@ -359,6 +360,7 @@ struct MaterielView: View {
                     searchText = searchTextfromDetailView
                 }
             }
+            //.isSearchable(selectedTab: selectedTab, searchText: $searchText)
         }
     }
 }
@@ -367,3 +369,4 @@ struct MaterielView: View {
     MaterielView() .environment(Session(currentUser: users[0]))
         .environment(ConversationStore())
 }
+

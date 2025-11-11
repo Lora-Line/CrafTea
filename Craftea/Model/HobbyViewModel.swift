@@ -7,7 +7,6 @@
 
 
 import SwiftUI
-import UIKit
 import Observation
 
 extension UIImage {
@@ -33,8 +32,8 @@ extension UIImage {
 
 @Observable
 class HobbyViewModel {
-    private let unsplash = UnsplashService(accessKey: "5bOGmrInQ06GBsAQMMD4OE8hN9S0J9QU9Y_ShBlgE6U")
-    //private let unsplash = UnsplashService(accessKey: "")
+    //private let unsplash = UnsplashService(accessKey: "5bOGmrInQ06GBsAQMMD4OE8hN9S0J9QU9Y_ShBlgE6U")
+    private let unsplash = UnsplashService(accessKey: "")
     var hobbies: [Hobby] = []
     
     init() {

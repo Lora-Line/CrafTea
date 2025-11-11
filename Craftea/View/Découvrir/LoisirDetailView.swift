@@ -203,7 +203,7 @@ struct LoisirDetailView: View {
                     hasScrolled = y > 5
                 }
             }
-        }
+        }.toolbar(.hidden, for: .tabBar)
     }
 }
 
